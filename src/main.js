@@ -1,3 +1,8 @@
-module.exports.loop = () => {
-  console.log("hello screeps")
+export function loop() {
+	console.log("hello screeps");
+  console.log(getSpawn().isActive());
 }
+
+const getSpawn = () => {
+	return Game.spawns.Spawn1;
+};
