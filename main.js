@@ -1,1 +1,3 @@
-console.log("hello screeps")
+module.exports.loop = () => {
+  console.log("hello world")
+}
