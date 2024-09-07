@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "target": "ES6", // or any ECMAScript version you're targeting
+    "checkJs": true,
+    "noEmit": true,
+    "module": "CommonJS", // or module system Screeps uses
+    "types": ["@types/screeps"]
+  },
+  "exclude": ["node_modules"]
+}
