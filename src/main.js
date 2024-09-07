@@ -1,37 +1,11 @@
-const debugLog = (msg) => {
+import mine from "./roles/mine";
+
+const debugLog = (/** @type {string} */ msg) => {
   console.log(`DEBUG: ${msg}`);
 };
+
 const getSpawn = () => {
   return Game.spawns.Spawn1;
-};
-
-const mine = () => {
-  const HARVEST_SUCCESS = 0;
-  for (const key of Object.keys(Game.creeps)) {
-    const creep = Game.creeps[key];
-
-    if (creep.store.getFreeCapacity(RESOURCE_ENERGY) === 0) {
-      const primarySpawn = getSpawn();
-      if (creep.transfer(primarySpawn, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-        creep.moveTo(primarySpawn.pos);
-      }
-      break;
-    }
-
-    if (creep.memory.assignedSource === undefined) {
-      creep.memory.assignedSource =
-        creep.pos.findClosestByRange(FIND_SOURCES).id;
-    }
-
-    const energySource = Game.getObjectById(creep.memory.assignedSource);
-    const harvestPosition = energySource.pos;
-    const harvestStatus = creep.harvest(energySource);
-
-    if (harvestStatus !== HARVEST_SUCCESS) {
-      console.log(`harvestStatus: ${harvestStatus} creepName ${creep.name}`);
-      creep.moveTo(harvestPosition);
-    }
-  }
 };
 
 const getCreepName = () => {
@@ -44,6 +18,7 @@ const spawnCreep = (/** @type {StructureSpawn} */ spawn) => {
   console.log(`spawnStatus: ${spawnStatus}`);
 };
 
+// @ts-ignore
 module.exports.loop = () => {
   const CREEP_LIMIT = 3;
   const primarySpawn = getSpawn();
